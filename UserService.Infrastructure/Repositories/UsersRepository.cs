@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading;
 using UserService.Domain.Abstractions;
 using UserService.Domain.Entities;
 

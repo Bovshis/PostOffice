@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace UserService.Application;
+namespace PostService.Application;
 
 public static class DependencyInjection
 {

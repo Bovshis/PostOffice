@@ -1,5 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PostService.Application.Posts.Commands;
+using PostService.Application.Posts.Queries;
+using PostService.Domain.Entities;
 
 namespace PostService.Controllers;
 
@@ -12,5 +15,20 @@ public class PostsController : ControllerBase
     public PostsController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Post>>> GetAll(CancellationToken cancellationToken)
+    {
+        var posts = await _mediator.Send(new GetAllPostsQuery(), cancellationToken);
+        return Ok(posts);
+    }
+
+    [HttpPost("create")]
+    public async Task<ActionResult<Post>> Create([FromBody] CreatePostCommand createPostCommand,
+        CancellationToken cancellationToken)
+    {
+        var post = await _mediator.Send(createPostCommand, cancellationToken);
+        return Ok(post);
     }
 }

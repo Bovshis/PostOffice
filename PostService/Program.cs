@@ -1,7 +1,9 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PostService.Application;
+using PostService.Domain.Abstractions;
 using PostService.Infrastructure;
+using PostService.Infrastructure.Repositories;
 
 namespace PostService
 {
@@ -17,6 +19,8 @@ namespace PostService
             builder.Services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
             builder.Services.AddApplicationLayer();
+            builder.Services.AddScoped<IPostsRepository, PostsRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

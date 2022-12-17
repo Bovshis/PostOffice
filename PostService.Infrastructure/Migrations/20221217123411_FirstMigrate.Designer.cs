@@ -11,8 +11,8 @@ using PostService.Infrastructure;
 namespace PostService.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221217100522_InitializeDb")]
-    partial class InitializeDb
+    [Migration("20221217123411_FirstMigrate")]
+    partial class FirstMigrate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,10 +53,7 @@ namespace PostService.Infrastructure.Migrations
             modelBuilder.Entity("PostService.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()

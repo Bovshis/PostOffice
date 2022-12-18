@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PostService.Application.Posts.Commands;
 using PostService.Application.Posts.Queries;
+using PostService.Application.Users.Commands;
 using PostService.Domain.Entities;
 
 namespace PostService.Controllers;
@@ -26,6 +27,14 @@ public class PostsController : ControllerBase
 
     [HttpPost("create")]
     public async Task<ActionResult<Post>> Create([FromBody] CreatePostCommand createPostCommand,
+        CancellationToken cancellationToken)
+    {
+        var post = await _mediator.Send(createPostCommand, cancellationToken);
+        return Ok(post);
+    }
+
+    [HttpPost("createu")]
+    public async Task<ActionResult<bool>> CreateU([FromBody] CreateUserCommand createPostCommand,
         CancellationToken cancellationToken)
     {
         var post = await _mediator.Send(createPostCommand, cancellationToken);

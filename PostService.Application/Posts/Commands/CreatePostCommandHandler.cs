@@ -24,8 +24,8 @@ public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, Post>
             UserId = request.UserId,
         };
 
-        var createdPost = await _postsRepository.Create(post);
-        await _unitOfWork.SaveChanges(cancellationToken);
+        var createdPost = await _postsRepository.CreateAsync(post);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return createdPost;
     }
 }

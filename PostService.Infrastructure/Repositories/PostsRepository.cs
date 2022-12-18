@@ -18,7 +18,7 @@ public class PostsRepository : IPostsRepository
         return _dbContext.Posts.Include(p => p.User).AsEnumerable();
     }
 
-    public async Task<Post> Create(Post post)
+    public async Task<Post> CreateAsync(Post post)
     {
         await _dbContext.Posts.AddAsync(post);
         return post;

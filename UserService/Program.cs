@@ -2,6 +2,7 @@ using System.Reflection;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using UserService.Application;
+using UserService.Application.Users.Publishers;
 using UserService.Domain.Abstractions;
 using UserService.Infrastructure;
 using UserService.Infrastructure.Repositories;
@@ -20,6 +21,7 @@ public class Program
             options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+        builder.Services.AddSingleton<IUserPublisher, RabbitMqUserPublisher>();
         builder.Services.AddApplicationLayer();
 
         var app = builder.Build();

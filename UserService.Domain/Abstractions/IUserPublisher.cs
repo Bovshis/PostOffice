@@ -4,5 +4,5 @@ namespace UserService.Domain.Abstractions;
 
 public interface IUserPublisher
 {
-    void PublishUser(UserPublishDto userPublishDto);
+    void PublishUser(UserPublishDto userPublishDto, string routingKey);
 }

@@ -1,7 +1,6 @@
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PostService.Application;
-using PostService.Application.Users;
+using PostService.Application.Messaging;
 using PostService.Domain.Abstractions;
 using PostService.Infrastructure;
 using PostService.Infrastructure.Repositories;
@@ -23,6 +22,7 @@ namespace PostService
             builder.Services.AddScoped<IPostsRepository, PostsRepository>();
             builder.Services.AddScoped<IUsersRepository, UsersRepository>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddSingleton<IMessageProcessor, MessageProcessor>();
             builder.Services.AddHostedService<RabbitMqUserSubscriber>();
             var app = builder.Build();
 

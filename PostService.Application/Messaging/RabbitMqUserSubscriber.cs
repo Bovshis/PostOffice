@@ -1,24 +1,20 @@
 ﻿using System.Text;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using PostService.Application.Users.Commands;
+using PostService.Domain.Abstractions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using static System.Formats.Asn1.AsnWriter;
 
-namespace PostService.Application.Users;
+namespace PostService.Application.Messaging;
 
 public class RabbitMqUserSubscriber : BackgroundService
 {
     private readonly IModel _channel;
-    private readonly IServiceScopeFactory _serviceScopeFactory;
+    private readonly IMessageProcessor _messageProcessor;
     private const string QueueName = "user.postservice";
 
-    public RabbitMqUserSubscriber(IMediator mediator, IServiceScopeFactory serviceScopeFactory)
+    public RabbitMqUserSubscriber(IMessageProcessor messageProcessor)
     {
-        _serviceScopeFactory = serviceScopeFactory;
+        _messageProcessor = messageProcessor;
 
         var factory = new ConnectionFactory();
         var connection = factory.CreateConnection();
@@ -29,14 +25,12 @@ public class RabbitMqUserSubscriber : BackgroundService
     {
         stoppingToken.ThrowIfCancellationRequested();
         var consumer = new EventingBasicConsumer(_channel);
-        consumer.Received += async (moduleHandle, ea) =>
+        consumer.Received += async (_, ea) =>
         {
             var body = ea.Body;
             var message = Encoding.UTF8.GetString(body.ToArray());
-            var user = JsonConvert.DeserializeObject<CreateUserCommand>(message)!;
-            using var scope = _serviceScopeFactory.CreateScope();
-            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-            var response = await mediator.Send(user, stoppingToken);
+            var routingKey = ea.RoutingKey;
+            var response = await _messageProcessor.ProcessMessage(message, routingKey, stoppingToken);
         };
 
         _channel.BasicConsume(queue: QueueName, autoAck: true, consumer: consumer);

@@ -1,21 +1,18 @@
 ﻿using MediatR;
-using UserService.Domain.Abstractions;
-using UserService.Domain.Dtos;
-using UserService.Domain.Entities;
+using PostService.Domain.Abstractions;
+using PostService.Domain.Entities;
 
-namespace UserService.Application.Users.Commands;
+namespace PostService.Application.Users.Commands;
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
 {
     private readonly IUsersRepository _usersRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly  IUserPublisher _userPublisher;
 
-    public UpdateUserCommandHandler(IUsersRepository usersRepository, IUnitOfWork unitOfWork, IUserPublisher userPublisher)
+    public UpdateUserCommandHandler(IUsersRepository usersRepository, IUnitOfWork unitOfWork)
     {
         _usersRepository = usersRepository;
         _unitOfWork = unitOfWork;
-        _userPublisher = userPublisher;
     }
 
     public async Task<bool> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
@@ -23,18 +20,10 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
         var user = new User()
         {
             Id = request.Id,
-            Name = request.Name,
-            Email = request.Email,
+            Name = request.Name
         };
         var isUpdated = await _usersRepository.UpdateAsync(user, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        var userPublishDto = new UserPublishDto()
-        {
-            Id = request.Id,
-            Name = request.Name,
-        };
-        _userPublisher.PublishUser(userPublishDto, "user.update");
 
         return isUpdated;
     }

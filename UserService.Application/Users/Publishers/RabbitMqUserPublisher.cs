@@ -10,7 +10,6 @@ public class RabbitMqUserPublisher : IUserPublisher
 {
     private readonly IModel _channel;
     private const string ExchangeName = "user.fanout";
-    private const string RoutingKeyName = "";
 
     public RabbitMqUserPublisher()
     {
@@ -19,12 +18,12 @@ public class RabbitMqUserPublisher : IUserPublisher
         _channel = connection.CreateModel();
     }
 
-    public void PublishUser(UserPublishDto userPublishDto)
+    public void PublishUser(UserPublishDto userPublishDto, string routingKey)
     {
         if (_channel.IsClosed) return;
 
         var message = JsonConvert.SerializeObject(userPublishDto);
         var body = Encoding.UTF8.GetBytes(message);
-        _channel.BasicPublish(exchange: ExchangeName, routingKey: RoutingKeyName, basicProperties: null, body: body);
+        _channel.BasicPublish(exchange: ExchangeName, routingKey: routingKey, basicProperties: null, body: body);
     }
 }

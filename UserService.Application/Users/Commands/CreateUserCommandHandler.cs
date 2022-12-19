@@ -33,7 +33,7 @@ internal class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Use
             Id = createdUser.Id,
             Name = createdUser.Name,
         };
-        _userPublisher.PublishUser(userPublishDto);
+        _userPublisher.PublishUser(userPublishDto, "user.create");
 
         return createdUser;
     }

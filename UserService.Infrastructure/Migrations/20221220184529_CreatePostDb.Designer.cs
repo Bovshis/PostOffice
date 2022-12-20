@@ -11,8 +11,8 @@ using UserService.Infrastructure;
 namespace UserService.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221215112632_InitialUserTable")]
-    partial class InitialUserTable
+    [Migration("20221220184529_CreatePostDb")]
+    partial class CreatePostDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

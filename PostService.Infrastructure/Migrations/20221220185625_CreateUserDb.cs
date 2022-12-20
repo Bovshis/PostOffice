@@ -5,7 +5,7 @@
 namespace PostService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigrate : Migration
+    public partial class CreateUserDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

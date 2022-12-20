@@ -4,9 +4,9 @@ namespace PostService.Infrastructure;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly ApplicationContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
-    public UnitOfWork(ApplicationContext dbContext)
+    public UnitOfWork(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

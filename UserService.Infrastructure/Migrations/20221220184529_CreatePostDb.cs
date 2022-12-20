@@ -5,7 +5,7 @@
 namespace UserService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialUserTable : Migration
+    public partial class CreatePostDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

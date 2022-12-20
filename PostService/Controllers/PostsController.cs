@@ -32,12 +32,4 @@ public class PostsController : ControllerBase
         var post = await _mediator.Send(createPostCommand, cancellationToken);
         return Ok(post);
     }
-
-    [HttpPost("createu")]
-    public async Task<ActionResult<bool>> CreateU([FromBody] CreateUserCommand createPostCommand,
-        CancellationToken cancellationToken)
-    {
-        var post = await _mediator.Send(createPostCommand, cancellationToken);
-        return Ok(post);
-    }
 }

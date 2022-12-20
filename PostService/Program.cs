@@ -16,7 +16,7 @@ namespace PostService
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddDbContext<ApplicationContext>(options =>
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
             builder.Services.AddApplicationLayer();
             builder.Services.AddScoped<IPostsRepository, PostsRepository>();

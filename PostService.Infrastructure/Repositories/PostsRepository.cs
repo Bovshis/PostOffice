@@ -6,9 +6,9 @@ namespace PostService.Infrastructure.Repositories;
 
 public class PostsRepository : IPostsRepository
 {
-    private readonly ApplicationContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
-    public PostsRepository(ApplicationContext dbContext)
+    public PostsRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

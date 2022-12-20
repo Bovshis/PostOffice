@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PostService.Application.Posts.Commands;
-using PostService.Application.Posts.Queries;
-using PostService.Application.Users.Commands;
+using PostService.Application.Posts.Commands.CreatePost;
+using PostService.Application.Posts.Queries.GetAllPosts;
+using PostService.Application.Users.Commands.CreateUser;
 using PostService.Domain.Entities;
 
 namespace PostService.Controllers;

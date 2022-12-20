@@ -2,7 +2,7 @@
 using PostService.Domain.Abstractions;
 using PostService.Domain.Entities;
 
-namespace PostService.Application.Posts.Queries;
+namespace PostService.Application.Posts.Queries.GetAllPosts;
 
 public class GetAllPostsQueryHandler : IRequestHandler<GetAllPostsQuery, IEnumerable<Post>>
 {

@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using PostService.Application.Users.Commands;
+using PostService.Application.Users.Commands.CreateUser;
+using PostService.Application.Users.Commands.DeleteUser;
+using PostService.Application.Users.Commands.UpdateUser;
 using PostService.Domain.Abstractions;
-using UserService.Application.Users.Commands;
 
 namespace PostService.Application.Messaging;
 

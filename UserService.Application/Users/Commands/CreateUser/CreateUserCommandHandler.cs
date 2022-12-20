@@ -3,7 +3,7 @@ using UserService.Domain.Abstractions;
 using UserService.Domain.Dtos;
 using UserService.Domain.Entities;
 
-namespace UserService.Application.Users.Commands;
+namespace UserService.Application.Users.Commands.CreateUser;
 
 internal class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
 {

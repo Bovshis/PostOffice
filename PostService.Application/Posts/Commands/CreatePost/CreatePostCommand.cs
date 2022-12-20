@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PostService.Domain.Entities;
 
-namespace PostService.Application.Posts.Commands;
+namespace PostService.Application.Posts.Commands.CreatePost;
 
 public class CreatePostCommand : IRequest<Post>
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace PostService.Application.Users.Commands;
+namespace PostService.Application.Users.Commands.CreateUser;
 
 public class CreateUserCommand : IRequest<bool>
 {

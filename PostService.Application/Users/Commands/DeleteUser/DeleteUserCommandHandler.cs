@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using PostService.Domain.Abstractions;
-using UserService.Application.Users.Commands;
 
-namespace PostService.Application.Users.Commands;
+namespace PostService.Application.Users.Commands.DeleteUser;
 
 public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
 {
@@ -19,7 +18,7 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
     {
         var isDeleted = await _usersRepository.DeleteAsync(request.Id, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-        
+
         return isDeleted;
     }
 }

@@ -2,7 +2,7 @@
 using PostService.Domain.Abstractions;
 using PostService.Domain.Entities;
 
-namespace PostService.Application.Users.Commands;
+namespace PostService.Application.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
 {

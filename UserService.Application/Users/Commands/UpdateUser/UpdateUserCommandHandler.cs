@@ -3,13 +3,13 @@ using UserService.Domain.Abstractions;
 using UserService.Domain.Dtos;
 using UserService.Domain.Entities;
 
-namespace UserService.Application.Users.Commands;
+namespace UserService.Application.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
 {
     private readonly IUsersRepository _usersRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly  IUserPublisher _userPublisher;
+    private readonly IUserPublisher _userPublisher;
 
     public UpdateUserCommandHandler(IUsersRepository usersRepository, IUnitOfWork unitOfWork, IUserPublisher userPublisher)
     {

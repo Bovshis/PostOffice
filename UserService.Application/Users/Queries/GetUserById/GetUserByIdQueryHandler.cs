@@ -2,7 +2,7 @@
 using UserService.Domain.Abstractions;
 using UserService.Domain.Entities;
 
-namespace UserService.Application.Users.Queries;
+namespace UserService.Application.Users.Queries.GetUserById;
 
 public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, User?>
 {

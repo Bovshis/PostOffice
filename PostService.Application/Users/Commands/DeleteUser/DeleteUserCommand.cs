@@ -1,5 +1,5 @@
 ﻿using MediatR;
 
-namespace UserService.Application.Users.Commands;
+namespace PostService.Application.Users.Commands.DeleteUser;
 
 public record DeleteUserCommand(int Id) : IRequest<bool>;

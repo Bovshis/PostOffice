@@ -2,7 +2,7 @@
 using UserService.Domain.Abstractions;
 using UserService.Domain.Dtos;
 
-namespace UserService.Application.Users.Commands;
+namespace UserService.Application.Users.Commands.DeleteUser;
 
 public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
 {

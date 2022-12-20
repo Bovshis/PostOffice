@@ -2,7 +2,7 @@
 using PostService.Domain.Abstractions;
 using PostService.Domain.Entities;
 
-namespace PostService.Application.Posts.Commands;
+namespace PostService.Application.Posts.Commands.CreatePost;
 
 public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, Post>
 {

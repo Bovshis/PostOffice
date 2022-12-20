@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using UserService.Application.Users.Commands;
-using UserService.Application.Users.Queries;
+using UserService.Application.Users.Commands.CreateUser;
+using UserService.Application.Users.Commands.DeleteUser;
+using UserService.Application.Users.Commands.UpdateUser;
+using UserService.Application.Users.Queries.GetAllUsers;
+using UserService.Application.Users.Queries.GetUserById;
 using UserService.Domain.Entities;
 
 namespace UserService.Controllers;

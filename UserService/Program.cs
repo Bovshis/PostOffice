@@ -6,6 +6,7 @@ using UserService.Application.Users.Publishers;
 using UserService.Domain.Abstractions;
 using UserService.Infrastructure;
 using UserService.Infrastructure.Repositories;
+using UserService.Middlewares;
 
 namespace UserService;
 
@@ -19,9 +20,12 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+        builder.Services.AddTransient<ExceptionHandlingMiddleware>();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<IUsersRepository, UsersRepository>();
         builder.Services.AddSingleton<IUserPublisher, RabbitMqUserPublisher>();
+
         builder.Services.AddApplicationLayer();
 
         var app = builder.Build();
@@ -32,6 +36,7 @@ public class Program
 
         app.UseAuthorization();
 
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.MapControllers();
 
